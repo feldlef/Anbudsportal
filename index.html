@@ -9,7 +9,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
+            height: 100vh;
             flex-direction: column;
             position: relative;
         }
@@ -24,10 +24,6 @@
             cursor: pointer;
             display: none;  /* Hide the button initially */
         }
-        #loginBtn {
-            margin-top: 1em;
-            display: inline-block;  /* Show the login button initially */
-        }
         h1 {
             color: blue;
         }
@@ -41,18 +37,28 @@
 <body>
     <div id="version">Version 1.1</div>  <!-- Incremented version number -->
     <h1>Alecta Anbudsportal</h1>
-    <input type="password" id="passwordInput" placeholder="Enter password">
+    <input type="password" id="passwordInput" placeholder="Enter password" onkeydown="checkEnter(event)">
     <button id="loginBtn" onclick="checkPassword()">Log in</button>  <!-- Added login button -->
-    <button id="linkBtn" onclick="window.open('https://share.1password.com/s#C4DvAthJXVPokAkgoz1NslVougpcH-S8oifwfXSxWr4','_blank')">Hämta inloggningsuppgifter</button>
 
     <script>
         function checkPassword() {
             var password = document.getElementById('passwordInput').value;
-            var linkBtn = document.getElementById('linkBtn');
+            var loginBtn = document.getElementById('loginBtn');
+            var passwordInput = document.getElementById('passwordInput');
+            
             if (password === 'Anbud') {  // The password is now "Anbud"
-                linkBtn.style.display = 'block';  // Show the button if the password is correct
+                loginBtn.style.display = 'none';  // Hide the login button
+                passwordInput.style.display = 'none'; // Hide the password input field
+                // You can also add other actions here, like opening the link.
             } else {
-                linkBtn.style.display = 'none';   // Hide the button if the password is incorrect
+                alert('Incorrect password. Please try again.'); // Show an alert for incorrect password
+                passwordInput.value = ''; // Clear the password input field
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
             }
         }
     </script>
