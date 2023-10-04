@@ -11,31 +11,48 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            position: relative;
         }
-        a {
+        button {
             margin-top: 4em;
-            display: none;  /* Hide the link initially */
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            display: none;  /* Hide the button initially */
+        }
+        #loginBtn {
+            margin-top: 1em;
+            display: inline-block;  /* Show the login button initially */
         }
         h1 {
             color: blue;
         }
+        #version {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
+    <div id="version">Version 1.1</div>  <!-- Incremented version number -->
     <h1>Alecta Anbudsportal</h1>
-    <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="checkPassword(event)">
-    <a href="https://share.1password.com/s#C4DvAthJXVPokAkgoz1NslVougpcH-S8oifwfXSxWr4" target="_blank" id="portalLink">Klicka här för att hämta inloggningsuppgifter till portalen</a>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button id="loginBtn" onclick="checkPassword()">Log in</button>  <!-- Added login button -->
+    <button id="linkBtn" onclick="window.open('https://1password.com','_blank')">Hämta inloggningsuppgifter</button>
 
     <script>
-        function checkPassword(event) {
-            if(event.keyCode == 13) {  // Check if "Enter" key was pressed
-                var password = document.getElementById('passwordInput').value;
-                var link = document.getElementById('portalLink');
-                if (password === 'Anbud') {  // The password is now "Anbud"
-                    link.style.display = 'block';  // Show the link if the password is correct
-                } else {
-                    link.style.display = 'none';   // Hide the link if the password is incorrect
-                }
+        function checkPassword() {
+            var password = document.getElementById('passwordInput').value;
+            var linkBtn = document.getElementById('linkBtn');
+            if (password === 'Anbud') {  // The password is now "Anbud"
+                linkBtn.style.display = 'block';  // Show the button if the password is correct
+            } else {
+                linkBtn.style.display = 'none';   // Hide the button if the password is incorrect
             }
         }
     </script>
