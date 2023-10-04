@@ -23,17 +23,19 @@
 </head>
 <body>
     <h1>Alecta Anbudsportal</h1>
-    <input type="password" id="passwordInput" placeholder="Enter password" oninput="checkPassword()">
+    <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="checkPassword(event)">
     <a href="https://share.1password.com/s#C4DvAthJXVPokAkgoz1NslVougpcH-S8oifwfXSxWr4" target="_blank" id="portalLink">Klicka här för att hämta inloggningsuppgifter till portalen</a>
 
     <script>
-        function checkPassword() {
-            var password = document.getElementById('passwordInput').value;
-            var link = document.getElementById('portalLink');
-            if (password === 'yourpassword') {  // Replace 'yourpassword' with the actual password
-                link.style.display = 'block';  // Show the link if the password is correct
-            } else {
-                link.style.display = 'none';   // Hide the link if the password is incorrect
+        function checkPassword(event) {
+            if(event.keyCode == 13) {  // Check if "Enter" key was pressed
+                var password = document.getElementById('passwordInput').value;
+                var link = document.getElementById('portalLink');
+                if (password === 'Anbud') {  // The password is now "Anbud"
+                    link.style.display = 'block';  // Show the link if the password is correct
+                } else {
+                    link.style.display = 'none';   // Hide the link if the password is incorrect
+                }
             }
         }
     </script>
