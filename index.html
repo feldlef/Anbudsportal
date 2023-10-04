@@ -9,12 +9,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 50vh; /* Adjusted the height to 50vh */
             flex-direction: column;
             position: relative;
         }
         button {
-            margin-top: 4em;
+            margin-top: 1em;
             background-color: blue;
             color: white;
             padding: 10px 20px;
@@ -22,7 +22,6 @@
             border-radius: 5px;
             font-size: 1em;
             cursor: pointer;
-            display: none;  /* Hide the button initially */
         }
         h1 {
             color: blue;
@@ -35,24 +34,26 @@
     </style>
 </head>
 <body>
-    <div id="version">Version 1.1</div>  <!-- Incremented version number -->
+    <div id="version">Version 1.1</div>
     <h1>Alecta Anbudsportal</h1>
     <input type="password" id="passwordInput" placeholder="Enter password" onkeydown="checkEnter(event)">
-    <button id="loginBtn" onclick="checkPassword()">Log in</button>  <!-- Added login button -->
+    <button id="loginBtn" onclick="checkPassword()">Log in</button>
+    <button id="linkBtn" style="display:none;" onclick="openLink()">Hämta inloggningsuppgifter</button>
 
     <script>
         function checkPassword() {
             var password = document.getElementById('passwordInput').value;
             var loginBtn = document.getElementById('loginBtn');
             var passwordInput = document.getElementById('passwordInput');
+            var linkBtn = document.getElementById('linkBtn');
             
-            if (password === 'Anbud') {  // The password is now "Anbud"
-                loginBtn.style.display = 'none';  // Hide the login button
-                passwordInput.style.display = 'none'; // Hide the password input field
-                // You can also add other actions here, like opening the link.
+            if (password === 'Anbud') {
+                loginBtn.style.display = 'none';
+                passwordInput.style.display = 'none';
+                linkBtn.style.display = 'block'; // Show the link button
             } else {
-                alert('Incorrect password. Please try again.'); // Show an alert for incorrect password
-                passwordInput.value = ''; // Clear the password input field
+                alert('Incorrect password. Please try again.');
+                passwordInput.value = '';
             }
         }
 
@@ -60,6 +61,10 @@
             if (event.key === 'Enter') {
                 checkPassword();
             }
+        }
+
+        function openLink() {
+            window.open('https://share.1password.com/s#C4DvAthJXVPokAkgoz1NslVougpcH-S8oifwfXSxWr4', '_blank');
         }
     </script>
 </body>
